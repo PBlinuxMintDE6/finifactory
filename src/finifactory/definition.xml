@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<root>
+    <buildings>
+        <building id="miner">
+            <name>Miner</name>
+            <description>Mines ores from the ground</description>
+            <logic>machine</logic>
+            <cost>50</cost>
+            <stackLimit>10</stackLimit>
+            <image path="finifactory/miner.png"/>
+            <inputSize>0</inputSize>
+            <outputSize>1</outputSize>
+            <recipes>
+                <recipe id="iron_ore">
+                    <time>15</time>
+                    <outputs>
+                        <item type="iron_ore" amount="1"/>
+                    </outputs>
+                </recipe>
+                <recipe id="coal">
+                    <time>15</time>
+                    <outputs>
+                        <item type="coal" amount="1"/>
+                    </outputs>
+                </recipe>
+                <recipe id="copper_ore">
+                    <time>15</time>
+                    <outputs>
+                        <item type="copper_ore" amount="1"/>
+                    </outputs>
+                </recipe>
+            </recipes>
+        </building>
+        <building id="oil_rig">
+            <name>Oil Rig</name>
+            <description>Extracts crude oil from the ground</description>
+            <logic>machine</logic>
+            <cost>70</cost>
+            <stackLimit>10</stackLimit>
+            <inputSize>0</inputSize>
+            <outputSize>1</outputSize>
+            <image path="finifactory/oil_drill.png"/>
+            <recipes>
+                <recipe id="oil_extraction">
+                    <time>20</time>
+                    <outputs>
+                        <item type="oil" amount="1"/>
+                    </outputs>
+                </recipe>
+            </recipes>
+        </building>
+        <building id="furnace">
+            <name>Furnace</name>
+            <description>Smelts ores into ingots</description>
+            <logic>machine</logic>
+            <cost>10</cost>
+            <stackLimit>20</stackLimit>
+            <inputSize>1</inputSize>
+            <outputSize>1</outputSize>
+            <image path="finifactory/furnace.png"/>
+            <recipes>
+                <recipe id="iron_ingot">
+                    <time>15</time>
+                    <inputs>
+                        <item type="iron_ore" amount="1"/>
+                    </inputs>
+                    <outputs>
+                        <item type="iron_ingot" amount="1"/>
+                    </outputs>
+                </recipe>
+                <recipe id="copper_ingot">
+                    <time>10</time>
+                    <inputs>
+                        <item type="copper_ore" amount="1"/>
+                    </inputs>
+                    <outputs>
+                        <item type="copper_ingot" amount="1"/>
+                    </outputs>
+                </recipe>
+            </recipes>
+        </building>
+        <building id="foundry">
+            <name>Foundry</name>
+            <description>Creates metal alloys</description>
+            <logic>machine</logic>
+            <cost>50</cost>
+            <stackLimit>20</stackLimit>
+            <inputSize>2</inputSize>
+            <outputSize>1</outputSize>
+            <image path="finifactory/foundry.png"/>
+            <recipes>
+                <recipe id="steel_ingot">
+                    <time>15</time>
+                    <inputs>
+                        <item type="iron_ingot" amount="1"/>
+                        <item type="coal" amount="1"/>
+                    </inputs>
+                    <outputs>
+                        <item type="steel_ingot" amount="1"/>
+                    </outputs>
+                </recipe>
+            </recipes>
+        </building>
+        <building id="chemical_plant">
+            <name>Chemical Plant</name>
+            <description>Produces chemicals and fuels</description>
+            <logic>machine</logic>
+            <cost>60</cost>
+            <stackLimit>10</stackLimit>
+            <inputSize>2</inputSize>
+            <outputSize>1</outputSize>
+            <image path="finifactory/chem_plant.png"/>
+            <recipes>
+                <recipe id="plastic">
+                    <time>15</time>
+                    <inputs>
+                        <item type="oil" amount="2"/>
+                        <item type="coal" amount="1"/>
+                    </inputs>
+                    <outputs>
+                        <item type="plastic" amount="1"/>
+                    </outputs>
+                </recipe>
+                <recipe id="fuel">
+                    <time>20</time>
+                    <inputs>
+                        <item type="oil" amount="3"/>
+                    </inputs>
+                    <outputs>
+                        <item type="fuel" amount="1"/>
+                    </outputs>
+                </recipe>
+            </recipes>
+        </building>
+        <building id="seller">
+            <name>Seller</name>
+            <description>Sells items</description>
+            <logic>seller</logic>
+            <cost>5</cost>
+            <inputSize>4</inputSize>
+            <outputSize>0</outputSize>
+            <stackLimit>100</stackLimit>
+            <image path="finifactory/sell.png"/>
+        </building>
+        <building id="belt">
+            <name>Belt</name>
+            <description>Transports items</description>
+            <logic>belt</logic>
+            <cost>1</cost>
+            <inputSize>1</inputSize>
+            <outputSize>1</outputSize>
+            <stackLimit>1</stackLimit>
+            <image path="finifactory/belt.png"/>
+        </building>
+        <building id="assembler">
+            <name>Assembler</name>
+            <description>Combines materials into components</description>
+            <logic>machine</logic>
+            <cost>40</cost>
+            <stackLimit>10</stackLimit>
+            <inputSize>2</inputSize>
+            <outputSize>1</outputSize>
+            <image path="finifactory/assembler.png"/>
+            <recipes>
+                <recipe id="gear">
+                    <time>10</time>
+                    <inputs>
+                        <item type="iron_ingot" amount="2"/>
+                    </inputs>
+                    <outputs>
+                        <item type="gear" amount="1"/>
+                    </outputs>
+                </recipe>
+                <recipe id="circuit">
+                    <time>12</time>
+                    <inputs>
+                        <item type="copper_wire" amount="2"/>
+                        <item type="plastic" amount="1"/>
+                    </inputs>
+                    <outputs>
+                        <item type="circuit" amount="1"/>
+                    </outputs>
+                </recipe>
+            </recipes>
+        </building>
+        <building id="wire_mill">
+            <name>Wire Mill</name>
+            <description>Turns copper ingots into copper wire</description>
+            <logic>machine</logic>
+            <cost>35</cost>
+            <stackLimit>10</stackLimit>
+            <inputSize>1</inputSize>
+            <outputSize>1</outputSize>
+            <image path="finifactory/wire_mill.png"/>
+            <recipes>
+                <recipe id="copper_wire">
+                    <time>8</time>
+                    <inputs>
+                        <item type="copper_ingot" amount="1"/>
+                    </inputs>
+                    <outputs>
+                        <item type="copper_wire" amount="2"/>
+                    </outputs>
+                </recipe>
+            </recipes>
+        </building>
+        <building id="water_pump">
+            <name>Water Pump</name>
+            <description>Pumps water from the ground</description>
+            <logic>machine</logic>
+            <cost>30</cost>
+            <stackLimit>10</stackLimit>
+            <inputSize>0</inputSize>
+            <outputSize>1</outputSize>
+            <image path="finifactory/invalid.png"/>
+            <recipes>
+                <recipe id="water_extraction">
+                    <time>10</time>
+                    <outputs>
+                        <item type="water" amount="1"/>
+                    </outputs>
+                </recipe>
+            </recipes>
+        </building>
+        <building id="solar_panel">
+            <name>Solar Panel</name>
+            <description>Generates electricity from sunlight</description>
+            <logic>generator</logic>
+            <cost>100</cost>
+            <stackLimit>5</stackLimit>
+            <inputSize>0</inputSize>
+            <outputSize>1</outputSize>
+            <image path="finifactory/invalid.png"/>
+        </building>
+    </buildings>
+    <items>
+        <item id="air">
+            <name>Air</name>
+            <description>You shouldn't have this</description>
+            <price>0</price>
+        </item>
+        <item id="iron_ore">
+            <name>Iron Ore</name>
+            <description>It's iron ore</description>
+            <price>1</price>
+        </item>
+        <item id="copper_ore">
+            <name>Copper Ore</name>
+            <description>Used in copper production</description>
+            <price>1</price>
+        </item>
+        <item id="coal">
+            <name>Coal</name>
+            <description>A filthy lump of coal</description>
+            <price>2</price>
+        </item>
+        <item id="iron_ingot">
+            <name>Iron Ingot</name>
+            <description>Fine quailty iron, valuable</description>
+            <price>10</price>
+        </item>
+        <item id="steel_ingot">
+            <name>Steel Ingot</name>
+            <description>Industrial grade steel</description>
+            <price>20</price>
+        </item>
+        <item id="gear">
+            <name>Gear</name>
+            <description>Used in machinery</description>
+            <price>15</price>
+        </item>
+        <item id="circuit">
+            <name>Circuit</name>
+            <description>Essential for electronics</description>
+            <price>25</price>
+        </item>
+        <item id="plastic">
+            <name>Plastic</name>
+            <description>Versatile synthetic material</description>
+            <price>5</price>
+        </item>
+        <item id="oil">
+            <name>Oil</name>
+            <description>Crude oil, used for fuel and plastics</description>
+            <price>3</price>
+        </item>
+        <item id="fuel">
+            <name>Fuel</name>
+            <description>Powerful energy source</description>
+            <price>20</price>
+        </item>
+        <item id="copper_ingot">
+            <name>Copper Ingot</name>
+            <description>Refined copper, used in wiring</description>
+            <price>12</price>
+        </item>
+        <item id="copper_wire">
+            <name>Copper Wire</name>
+            <description>Used in circuits and electronics</description>
+            <price>6</price>
+        </item>
+        <item id="water">
+            <name>Water</name>
+            <description>Essential for various processes</description>
+            <price>1</price>
+        </item>
+        <item id="electricity">
+            <name>Electricity</name>
+            <description>Power source for machines</description>
+            <price>10</price>
+        </item>
+    </items>
+</root>

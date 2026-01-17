@@ -7,91 +7,63 @@ package finifactory;
 
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
+import javax.xml.*;
 
 /**
  * @author c
  */
-public class Midlet extends MIDlet {
+public class Midlet extends MIDlet implements CommandListener {
 
-    public static final int DPAD_UP = -1;
-    public static final int DPAD_DOWN = -2;
-    public static final int DPAD_LEFT = -3;
-    public static final int DPAD_RIGHT = -4;
-    public static final int DPAD_OK = -5;
-    public static final int DPAD_BUMPER_LEFT = -6;
-    public static final int DPAD_BUMPER_RIGHT = -7;
+    private Display display;
+    private List menu;
+    private Command exitCommand;
+    
+    private GameState gameState;
+    private GameView gameView;
+    private BuildSystem buildSystem;
+    private Simulation simulation;
 
-    Display display;
-    GameCanvas canvas;
-
-    public void startApp() {
+    protected void startApp() {
+        if (gameState == null) {
+            XMLLoader.load("/finifactory/definition.xml");
+            gameState = new GameState();
+            buildSystem = new BuildSystem(gameState);
+            simulation = new Simulation(gameState);
+            gameView = new GameView(gameState, this, buildSystem, simulation);
+            gameView.start();
+        }
+        
+        Display.getDisplay(this).setCurrent(gameView);
+        /*
         display = Display.getDisplay(this);
-        canvas = new GameCanvas();
-        display.setCurrent(canvas);
-        canvas.startLoop();
+
+        menu = new List("Choose an option", List.IMPLICIT);
+        menu.append("Start Game", null);
+        menu.append("Load Game", null);
+        menu.append("Options", null);
+        menu.append("About", null);
+        
+        exitCommand = new Command("Back", Command.BACK, 1);
+        menu.addCommand(exitCommand);
+        menu.setCommandListener(this);
+
+        display.setCurrent(menu);
+        */
+    }
+
+    public void commandAction(Command c, Displayable d) {
+        if (c == List.SELECT_COMMAND) {
+            int index = menu.getSelectedIndex();
+            String choice = menu.getString(index);
+            System.out.println(choice);
+        } else if (c == exitCommand) {
+            notifyDestroyed();
+        }
     }
 
     public void pauseApp() {
     }
 
     public void destroyApp(boolean unconditional) {
-        canvas.stopLoop();
-    }
-
-    public class GameCanvas extends Canvas {
-
-        private Thread loopThread;
-        private boolean running = false;
-
-        protected void paint(Graphics g) {
-
-        }
-
-        protected void keyPressed(int keyCode) {
-            switch (keyCode) {
-                case DPAD_UP:
-                    break;
-                case DPAD_DOWN:
-                    break;
-                case DPAD_LEFT:
-                    break;
-                case DPAD_RIGHT:
-                    break;
-                case KEY_NUM2:
-                    break;
-                case KEY_NUM8:
-                    break;
-                case KEY_NUM4:
-                    break;
-                case KEY_NUM6:
-                    break;
-            }
-        }
-
-        private void startLoop() {
-            running = true;
-            loopThread = new Thread() {
-                public void run() {
-                    while (running) {
-                        repaint();
-                        serviceRepaints();
-
-                        try {
-                            Thread.sleep(16);
-                        } catch (InterruptedException e) {
-                        }
-                    }
-                }
-            };
-            loopThread.start();
-        }
-
-        private void stopLoop() {
-            running = false;
-            if (loopThread != null) {
-                loopThread.interrupt();
-                loopThread = null;
-            }
-        }
     }
 }
