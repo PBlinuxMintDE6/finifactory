@@ -1,4 +1,4 @@
-# Finifactory
+# FiniFactory
 ### A factory game written for the J2ME platform
 ## How to play
 Mine minerals, process them and sell for profit
