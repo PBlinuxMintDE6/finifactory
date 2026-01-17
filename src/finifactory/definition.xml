@@ -229,16 +229,6 @@ and open the template in the editor.
                 </recipe>
             </recipes>
         </building>
-        <building id="solar_panel">
-            <name>Solar Panel</name>
-            <description>Generates electricity from sunlight</description>
-            <logic>generator</logic>
-            <cost>100</cost>
-            <stackLimit>5</stackLimit>
-            <inputSize>0</inputSize>
-            <outputSize>1</outputSize>
-            <image path="finifactory/invalid.png"/>
-        </building>
     </buildings>
     <items>
         <item id="air">
@@ -310,11 +300,6 @@ and open the template in the editor.
             <name>Water</name>
             <description>Essential for various processes</description>
             <price>1</price>
-        </item>
-        <item id="electricity">
-            <name>Electricity</name>
-            <description>Power source for machines</description>
-            <price>10</price>
         </item>
     </items>
 </root>
