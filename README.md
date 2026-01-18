@@ -1,9 +1,15 @@
-# Finifactory
+# FiniFactory
 ### A factory game written for the J2ME platform
 ## How to play
-Mine minerals, process them and sell for profit
+Use the directional pad to navigate the cursor and use the center button to open a list of tile options. Construct opens a menu of buildings you can build. Destroy destroys the building the cursor is currently on. Rotate rotates the building the cursor is currently on by 90 degrees clockwise. Configure opens a list of recipes for the currently selected building.
 ## Installation
 Download the latest release and install it onto device
+
+Instructions for J2ME-Loader on Android:
+- Download latest release .zip file
+- Unzip the files into a known folder (recommend Downloads)
+- Open J2ME-Loader and press the add option
+- Navigate the the folder where the files are and select FiniFactory.jar
 
 Requirements:
 - XML API (JSR 280)
