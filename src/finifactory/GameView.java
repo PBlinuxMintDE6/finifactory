@@ -180,7 +180,11 @@ public class GameView extends GameCanvas implements Runnable {
 
         // FIRE / SELECT — usually just one action per press
         if ((key & FIRE_PRESSED) != 0 && (prevKeyStates & FIRE_PRESSED) == 0) {
-            showTileMenu(state.getTile(cursorX, cursorY));
+            if (cursorY > -1) {
+                showTileMenu(state.getTile(cursorX, cursorY));
+            } else {
+                showPauseMenu();
+            }
         }
 
         prevKeyStates = key;
@@ -189,8 +193,8 @@ public class GameView extends GameCanvas implements Runnable {
         if (cursorX < 0) {
             cursorX = 0;
         }
-        if (cursorY < 0) {
-            cursorY = 0;
+        if (cursorY < -1) {
+            cursorY = -1;
         }
         if (cursorX >= Configuration.Map.WIDTH) {
             cursorX = Configuration.Map.WIDTH - 1;
@@ -300,8 +304,16 @@ public class GameView extends GameCanvas implements Runnable {
             }
         }
 
+        g.setColor(0xFFFFFF);
+        g.fillRect(getWidth() - 24, 8, 16, 16);
+
         int cx = (cursorX - camX) * Configuration.Tile.WIDTH;
         int cy = (cursorY - camY + Configuration.Map.Y_OFFSET) * Configuration.Tile.HEIGHT;
+
+        if (cursorY < 0) {
+            cx = getWidth() - 24;
+            cy = 8;
+        }
 
         Tile cursorTile = state.getTile(cursorX, cursorY);
 
@@ -442,6 +454,43 @@ public class GameView extends GameCanvas implements Runnable {
 
         paused = true;
         Display.getDisplay(midlet).setCurrent(constructMenu);
+    }
+    
+    private void showAlert(Displayable d, String title, String message, AlertType a) {
+        Alert alert = new Alert(title, message, null, a);
+        alert.setTimeout(Alert.FOREVER);
+        Display.getDisplay(midlet).setCurrent(alert, d);
+    } 
+
+    private void showPauseMenu() {
+        final List pauseMenu = new List("Pause", List.IMPLICIT);
+        pauseMenu.append("Save", null);
+        pauseMenu.append("Load", null);
+        pauseMenu.append("Options", null);
+        pauseMenu.append("Exit to title screen", null);
+        pauseMenu.addCommand(new Command("Back", Command.BACK, 0));
+
+        pauseMenu.setCommandListener(new CommandListener() {
+            public void commandAction(Command c, Displayable d) {
+                if (c.getCommandType() == Command.BACK) {
+                    resumeGame();
+                } else if (c == List.SELECT_COMMAND) {
+                    int index = pauseMenu.getSelectedIndex();
+                    if (index == 0) {
+                        showAlert(d, "Saving", "Saving is unavailable", AlertType.ERROR);
+                    } else if (index == 1) {
+                        showAlert(d, "Loading", "Loading is unavailable", AlertType.ERROR);
+                    } else if (index == 2) {
+                        showAlert(d, "Options", "Options are unavailable", AlertType.ERROR);
+                    } else if (index == 3) {
+                        showAlert(d, "Title screen", "The title screen is unavailable", AlertType.ERROR);
+                    }
+                }
+            }
+        });
+
+        paused = true;
+        Display.getDisplay(midlet).setCurrent(pauseMenu);
     }
 
     private void showTileMenu(Tile t) {
